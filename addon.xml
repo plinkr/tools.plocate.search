@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.plocate.search" name="plocate Search" version="0.1.0" provider-name="plinkr">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    <extension point="xbmc.python.script" library="default.py"/>
+    <extension point="xbmc.addon.metadata">
+		<summary lang="bg_BG">Търси в библиотеката Ви офлайн с plocate.</summary>
+		<summary lang="ca_ES">Cerca a la teva biblioteca fora de línia amb plocate.</summary>
+		<summary lang="cs_CZ">Hledejte ve své knihovně offline pomocí plocate.</summary>
+		<summary lang="de_DE">Durchsuchen Sie Ihre Bibliothek offline mit plocate.</summary>
+		<summary lang="el_GR">Αναζήτηση στη συλλογή σας εκτός σύνδεσης με plocate.</summary>
+		<summary lang="en_GB">Search your library offline with plocate.</summary>
+		<summary lang="en_NZ">Search your library offline with plocate.</summary>
+		<summary lang="en_US">Search your library offline with plocate.</summary>
+		<summary lang="es_ES">Busca en tu biblioteca de manera offline con plocate.</summary>
+		<summary lang="fr_FR">Recherchez dans votre bibliothèque hors ligne avec plocate.</summary>
+		<summary lang="fr_CA">Recherchez dans votre bibliothèque hors ligne avec plocate.</summary>
+		<summary lang="gl_ES">Buscar na súa biblioteca offline con plocate.</summary>
+		<summary lang="he_IL">חפש בספרייתך במצב לא מקוון באמצעות plocate.</summary>
+		<summary lang="hr_HR">Pretražite svoju zbirku offline pomoću plocate.</summary>
+		<summary lang="hu_HU">Keresés a könyvtárban offline a plocate segítségével.</summary>
+		<summary lang="id_ID">Cari pustaka Anda secara offline dengan plocate.</summary>
+		<summary lang="it_IT">Cerca nella tua libreria offline con plocate.</summary>
+		<summary lang="ko_KR">라이브러리를 plocate로 오프라인에서 검색합니다.</summary>
+		<summary lang="lt_LT">Ieškoti bibliotekoje offline naudojant plocate.</summary>
+		<summary lang="nl_NL">Zoek offline in je bibliotheek met plocate.</summary>
+		<summary lang="nb_NO">Søk i biblioteket ditt offline med plocate.</summary>
+		<summary lang="pl_PL">Przeszukaj swoją bibliotekę offline za pomocą plocate.</summary>
+		<summary lang="pt_PT">Pesquise na sua biblioteca offline com plocate.</summary>
+		<summary lang="pt_BR">Pesquise na sua coleção offline com plocate.</summary>
+		<summary lang="ro_RO">Căutați în mediateca dvs. offline cu plocate.</summary>
+		<summary lang="ru_RU">Ищите в вашей медиатеке офлайн с помощью plocate.</summary>
+		<summary lang="sl_SI">Iščite v svoji knjižnici brez povezave s plocate.</summary>
+		<summary lang="sv_SE">Sök i ditt bibliotek offline med plocate.</summary>
+		<summary lang="tr_TR">Kitaplığını plocate ile çevrimdışı olarak ara.</summary>
+		<summary lang="zh_CN">使用plocate离线搜索您的资料库。</summary>
+		<description lang="bg_BG">Това разширение може да намери всеки елемент във вашата видео и музикална библиотека, като използва plocate за офлайн търсене.</description>
+		<description lang="ca_ES">Aquest complement pot trobar qualsevol article en la teva biblioteca de vídeo i música, utilitzant plocate per a la cerca fora de línia.</description>
+		<description lang="cs_CZ">Tento doplněk dokáže najít libovolnou položku ve vaší audio a video knihovně pomocí plocate pro offline vyhledávání.</description>
+		<description lang="de_DE">Dieses Add-on kann jeden Eintrag in Ihrer Video- und Musikbibliothek finden, indem es plocate für die Offline-Suche verwendet.</description>
+		<description lang="el_GR">Αυτό το πρόσθετο μπορεί να βρει κάθε αντικείμενο στις συλλογές σας, χρησιμοποιώντας το plocate για αναζήτηση εκτός σύνδεσης.</description>
+		<description lang="en_GB">This addon can find any item in your video and music library using plocate for offline search.</description>
+		<description lang="en_NZ">This addon can find any item in your video and music library using plocate for offline search.</description>
+		<description lang="en_US">This addon can find any item in your video and music library using plocate for offline search.</description>
+		<description lang="es_ES">Este complemento puede encontrar cualquier elemento en tu biblioteca de vídeo y música, utilizando plocate para la búsqueda offline.</description>
+		<description lang="fr_FR">Cette extension peut trouver tout élément dans la vidéothèque et l'audiothèque en utilisant plocate pour la recherche hors ligne.</description>
+		<description lang="fr_CA">Cet addiciel peut trouver tout élément dans votre vidéothèque et dans votre audiothèque en utilisant plocate pour la recherche hors ligne.</description>
+		<description lang="gl_ES">Este complemento pode atopar calquera elemento na súa biblioteca de medios, utilizando plocate para buscar sen conexión.</description>
+		<description lang="he_IL">ההרחבה הזו יכולה למצוא כל פריט בספריות הווידאו והמוזיקה שלך, באמצעות plocate לחיפוש לא מקוון.</description>
+		<description lang="hr_HR">Ovaj dodatak može pronaći svaku stavku u vašoj videoteci ili fonoteci, koristeći plocate za pretraživanje offline.</description>
+		<description lang="hu_HU">Ez a kiegészítő bármely elemet megtalálja a videó és audió médiatárban, a plocate segítségével offline kereséssel.</description>
+		<description lang="id_ID">Addon ini dapat mencari item apa saja di pustaka video dan musik Anda menggunakan plocate untuk pencarian offline.</description>
+		<description lang="it_IT">Questo addon può trovare ogni elemento nella tua libreria video ed in quella musicale, utilizzando plocate per la ricerca offline.</description>
+		<description lang="ko_KR">이 애드온은 plocate를 사용하여 비디오 및 음악 라이브러리에서 모든 항목을 오프라인으로 찾을 수 있습니다.</description>
+		<description lang="lt_LT">Šis priedas gali rasti bet kokį elementą jūsų vaizdo ir garso bibliotekoje, naudodamas plocate neprisijungusiam paieškai.</description>
+		<description lang="nl_NL">Deze addon kan elk item in je video- en muziekbibliotheken vinden met plocate voor offline zoeken.</description>
+		<description lang="nb_NO">Dette tillegget kan finne hva som helst i ditt film eller musikk bibliotek ved å bruke plocate for offline søk.</description>
+		<description lang="pl_PL">Ten plugin może odnaleźć dowolną pozycję w twojej bibliotece wideo oraz muzycznej, używając plocate do wyszukiwania offline.</description>
+		<description lang="pt_PT">Este addon pode encontrar qualquer item na sua biblioteca de vídeos e de músicas, utilizando plocate para pesquisa offline.</description>
+		<description lang="pt_BR">Este addon pode encontrar qualquer item na sua coleção de vídeos e música, utilizando plocate para busca offline.</description>
+		<description lang="ro_RO">Acest supliment poate găsi orice element în mediateca dumneavoastră video și audio, folosind plocate pentru căutare offline.</description>
+		<description lang="ru_RU">Это дополнение поможет найти любую запись в вашей медиатеке с помощью plocate для офлайн-поиска.</description>
+		<description lang="sl_SI">Ta dodatek lahko poišče katerokoli podatek v vaši knjižnici filmov in glasbe, z uporabo plocate za iskanje brez povezave.</description>
+		<description lang="sv_SE">Detta tillägg kan hitta vilket objekt som helst i ditt video och musikbibliotek med plocate för offline-sökning.</description>
+		<description lang="tr_TR">Bu eklenti video ve müzik kitaplığınızdaki herhangi bir öğeyi plocate ile çevrimdışı olarak bulabilir.</description>
+		<description lang="zh_CN">此插件可以使用plocate离线搜索您的视频和音乐资料库中的任何项目。</description>
+        <platform>linux</platform>
+        <license>MIT License</license>
+        <forum>https://github.com/plinkr/script.plocate.search/issues</forum>
+        <source>https://github.com/plinkr/script.plocate.search</source>
+        <assets>
+            <icon>resources/icon.png</icon>
+            <fanart>resources/fanart.png</fanart>
+        </assets>
+        <news>- First concept version, still in Beta</news>
+    </extension>
+</addon>

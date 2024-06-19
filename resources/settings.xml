@@ -1,0 +1,13 @@
+<settings>
+    <category label="General Settings">
+        <setting id="show_only_filename_and_parent" type="bool"
+                 label="Show only the basename and the parent of the file or folder" default="true"/>
+        <setting id="search_basename" type="bool" label="Match only against the file name portion of the path name"
+                 default="false"/>
+        <setting id="search_case_insensitive" type="bool" label="Do a case-insensitive match" default="true"/>
+        <setting id="only_existing" type="bool"
+                 label="Print only entries that refer to files existing at the time plocate is run" default="true"/>
+        <setting id="search_using_regex" type="bool"
+                 label="Interpret patterns as POSIX extended regular expressions (slow)" default="false"/>
+    </category>
+</settings>
