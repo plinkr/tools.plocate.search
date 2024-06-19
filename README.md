@@ -25,13 +25,15 @@
 ## Installation
 
 1. **Download the Add-on:**
-   - Download the `tools.plocate.search.zip` file from the releases section of this repository.
+   - For **aarch64** architecture (tested on a Raspberry Pi): Download the `tools.plocate.search_aarch64_RPi4.zip` file from the releases section of this repository.
+   - For **x86_64** architecture (PC, Intel NUC, Nettops, Virtual Machines and Laptops with x86 Hardware (64Bit)): Download the `tools.plocate.search_x86_64.zip` file from the releases section of this repository.
 
 2. **Install via Kodi:**
    - Open Kodi and navigate to `Add-ons`.
    - Select `Install from zip file`.
-   - Locate and select the downloaded `tools.plocate.search.zip` file.
+   - Locate and select the downloaded `tools.plocate.search_<architecture>.zip` file.
    - Wait for the add-on installed notification.
+
 
 3. **Post-Installation Script:**
    - The installation process will automatically run a script to copy and modify necessary `udev` rules.
@@ -69,7 +71,7 @@
 - **updatedb:** Utility to update the database used by `plocate`.
 - **LibreELEC:** Built on LibreELEC 12.0.0 and depends on the `udev` rules at `/storage/.config/udev.rules.d/95-udevil-mount.rules` to index newly connected devices.
 
-Provided in this repo are the binaries of `plocate` and `updatedb` version `1.1.22`, compiled for `aarch64`, compatible with **LibreELEC 12.0.0**.
+Provided in this repo on the releases section are the binaries of `plocate` and `updatedb` version `1.1.22`, compiled for `aarch64` and `x86_64`, and tested on a Raspberry Pi 4 and a virtual machine running on a Linux box. These binaries are compatible with **LibreELEC 12.0.0**.
 
 ## Contributing
 
@@ -128,7 +130,7 @@ LibreELEC:~ # rm /storage/.config/udev.rules.d/95-udevil-mount.rules
 
 ### TODO
 - Make `plocate` a LibreELEC add-on, so it can support all its platforms.
-- Right now `plocate` is compiled for `aarch64` and only tested on a Raspberry Pi 4; it should be compiled for more architectures, or at least write a how-to for compiling `plocate` for LibreELEC on any architecture, so you can do it yourself.
+- Right now `plocate` is compiled for `aarch64` and `x86_64` and tested on a Raspberry Pi 4 and a virtual machine running on a Linux box; it should be compiled for more architectures, or at least write a how-to for compiling `plocate` for LibreELEC on any architecture, so you can do it yourself.
 - Make an option to rebuild the index of any connected device from the configuration, on demand.
 - Find a way to clean the custom `udev` rules after uninstallation.
 
