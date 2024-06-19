@@ -1,6 +1,6 @@
 # Add-on for LibreELEC/Kodi `plocate Search`
 
-`plocate Search` | `script.plocate.search` is a LibreELEC/Kodi add-on designed to provide efficient offline search functionality for your multimedia library. By leveraging [`plocate`](https://plocate.sesse.net/) and [`updatedb`](https://plocate.sesse.net/), this add-on allows you to quickly locate files within your library, even when offline. The add-on integrates seamlessly with Kodi, offering an intuitive graphical interface for searching and navigating your media files.
+`plocate Search` | `tools.plocate.search` is a LibreELEC/Kodi add-on designed to provide efficient offline search functionality for your multimedia library. By leveraging [`plocate`](https://plocate.sesse.net/) and [`updatedb`](https://plocate.sesse.net/), this add-on allows you to quickly locate files within your library, even when offline. The add-on integrates seamlessly with Kodi, offering an intuitive graphical interface for searching and navigating your media files.
 
 ## Table of Contents
 
@@ -25,12 +25,12 @@
 ## Installation
 
 1. **Download the Add-on:**
-   - Download the `script.plocate.search.zip` file from the releases section of this repository.
+   - Download the `tools.plocate.search.zip` file from the releases section of this repository.
 
 2. **Install via Kodi:**
    - Open Kodi and navigate to `Add-ons`.
    - Select `Install from zip file`.
-   - Locate and select the downloaded `script.plocate.search.zip` file.
+   - Locate and select the downloaded `tools.plocate.search.zip` file.
    - Wait for the add-on installed notification.
 
 3. **Post-Installation Script:**
@@ -60,7 +60,7 @@
 
 - **Index Management:**
   - The add-on automatically handles index updates for connected storage devices.
-  - Indexes are stored in `/storage/.kodi/addons/script.plocate.search/resources/databases/`.
+  - Indexes are stored in `/storage/.kodi/addons/tools.plocate.search/resources/databases/`.
   - Each index is named after the UUID of the storage device partition, ensuring uniqueness for every drive you connect to your LibreELEC device.
 
 ## Dependencies
@@ -73,7 +73,7 @@ Provided in this repo are the binaries of `plocate` and `updatedb` version `1.1.
 
 ## Contributing
 
-We welcome contributions to `script.plocate.search`. To contribute:
+We welcome contributions to `tools.plocate.search`. To contribute:
 
 1. Fork the repository.
 2. Create a new branch with a descriptive name and change what you want.
@@ -99,7 +99,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Developed on a Raspberry Pi 4 with **LibreELEC 12.0.0** and **Kodi 21.0.0**, `plocate` scans and builds the index of a 5TB disk filled with multimedia (containing 17,502 files) in about 12 seconds on the first run:
 ```
-LibreELEC:~ # time /storage/.kodi/addons/script.plocate.search/resources/lib/updatedb --database-root /var/media/easystore/ --output /storage/plinkr/plocate/plocate.db
+LibreELEC:~ # time /storage/.kodi/addons/tools.plocate.search/resources/lib/updatedb --database-root /var/media/easystore/ --output /storage/plinkr/plocate/plocate.db
 real 0m 12.10s
 user 0m 0.64s
 sys 0m 0.23s
@@ -107,7 +107,7 @@ sys 0m 0.23s
 
 Subsequent runs are faster, taking less than 1 second (depending on file changes):
 ```
-LibreELEC:~ # time /storage/.kodi/addons/script.plocate.search/resources/lib/updatedb --database-root /var/media/easystore/ --output /storage/plinkr/plocate/plocate.db
+LibreELEC:~ # time /storage/.kodi/addons/tools.plocate.search/resources/lib/updatedb --database-root /var/media/easystore/ --output /storage/plinkr/plocate/plocate.db
 real 0m 0.77s
 user 0m 0.54s
 sys 0m 0.23s

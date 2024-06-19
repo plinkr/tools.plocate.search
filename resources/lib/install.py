@@ -45,7 +45,7 @@ def make_binary_file_executable(path_to_binary_file):
 def create_udev_rules_if_not_exists():
     # Check if the udev rules file exists
     if not os.path.exists("/storage/.config/udev.rules.d/95-udevil-mount.rules"):
-        # If doesn't exists, call the function to create it
+        # If doesn't exist, call the function to create it
         copy_and_modify_udevil_rules(script_path)
 
 

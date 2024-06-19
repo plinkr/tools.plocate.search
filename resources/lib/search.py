@@ -9,7 +9,7 @@ def search_files(options, query):
 
     if not database_files:
         raise FileNotFoundError(
-            "No databases found in the addon `script.plocate.search/resources/databases/` directory.\n"
+            f"No databases found in the addon `{database_dir}` directory.\n"
             "Try reconnecting the device.")
 
     # Create the variable database_path with the full path of the files separated by ':'
