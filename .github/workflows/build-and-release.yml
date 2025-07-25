@@ -1,0 +1,133 @@
+name: Build plocate for x86_64 & aarch64 and Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build plocate
+    strategy:
+      matrix:
+        arch: [x86_64, aarch64]
+    runs-on: ${{ matrix.arch == 'x86_64' && 'ubuntu-latest' || 'ubuntu-22.04-arm' }}
+    container:
+      image: ${{ matrix.arch == 'x86_64' && 'ubuntu:22.04' || 'arm64v8/ubuntu:22.04' }}
+      options: --user root
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          apt-get update
+          apt-get install -y build-essential meson pkg-config \
+            libzstd-dev cmake liburing-dev wget unzip
+
+      - name: Download plocate source
+        run: wget -O plocate.tar.gz https://plocate.sesse.net/download/plocate-1.1.23.tar.gz
+
+      - name: Extract source
+        run: |
+          tar xf plocate.tar.gz
+          cd plocate-1.1.23
+
+      - name: Patch meson.build
+        run: |
+          cd plocate-1.1.23
+          sed -i \
+            -e "s/add_project_arguments('-DGROUPNAME.*)/add_project_arguments('-DGROUPNAME=\"root\"', language: 'cpp')/" \
+            -e "s/uringdep = dependency('liburing'.*)/uringdep = dependency('liburing', required: false, static: true)/" \
+            -e "s/zstddep = dependency('libzstd'.*)/zstddep = dependency('libzstd', static: true)/" \
+            meson.build
+
+      - name: Configure & compile
+        run: |
+          cd plocate-1.1.23
+          meson setup obj
+          ninja -C obj
+
+      - name: Prepare binaries
+        run: |
+          mkdir -p artifacts/lib
+          cp plocate-1.1.23/obj/plocate artifacts/lib/
+          cp plocate-1.1.23/obj/updatedb artifacts/lib/
+
+      - name: Upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: plocate-${{ matrix.arch }}
+          path: artifacts/lib
+
+  create-release:
+    name: Create GitHub Release with Assets
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download x86_64 artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: plocate-x86_64
+          path: release-x86_64
+
+      - name: Download aarch64 artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: plocate-aarch64
+          path: release-aarch64
+
+      # Prepare x86_64 release
+      - name: Copy x86_64 binaries into repo structure
+        run: |
+          cp release-x86_64/plocate resources/lib/plocate
+          cp release-x86_64/updatedb resources/lib/updatedb
+
+      - name: Stage x86_64 release bundle
+        run: |
+          rm -rf bundle
+          mkdir -p bundle/tools.plocate.search
+          cp addon.xml default.py bundle/tools.plocate.search/
+          cp -r resources bundle/tools.plocate.search/
+          mkdir bundle/tools.plocate.search/resources/databases
+
+      - name: Zip x86_64 release bundle
+        run: |
+          cd bundle
+          zip -r ../tools.plocate.search_x86_64.zip tools.plocate.search
+
+      # Prepare aarch64 release
+      - name: Copy aarch64 binaries into repo structure
+        run: |
+          cp release-aarch64/plocate resources/lib/plocate
+          cp release-aarch64/updatedb resources/lib/updatedb
+
+      - name: Stage aarch64 release bundle
+        run: |
+          rm -rf bundle
+          mkdir -p bundle/tools.plocate.search
+          cp addon.xml default.py bundle/tools.plocate.search/
+          cp -r resources bundle/tools.plocate.search/
+          mkdir bundle/tools.plocate.search/resources/databases
+
+      - name: Zip aarch64 release bundle
+        run: |
+          cd bundle
+          zip -r ../tools.plocate.search_aarch64_RPi4.zip tools.plocate.search
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: |
+            ./tools.plocate.search_x86_64.zip
+            ./tools.plocate.search_aarch64_RPi4.zip
