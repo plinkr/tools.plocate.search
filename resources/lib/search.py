@@ -1,5 +1,6 @@
-import subprocess
 import os
+import subprocess
+
 from resources.config import plocate_path, database_dir
 
 

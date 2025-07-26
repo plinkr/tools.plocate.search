@@ -1,9 +1,12 @@
-import xbmc
-import xbmcgui
-import xbmcaddon
 import os
+
+import xbmc
+import xbmcaddon
+import xbmcgui
+
+from resources.lib.install import create_udev_rules_if_not_exists, check_and_fix_executable_permission, \
+    create_database_dir_if_not_exists
 from resources.lib.search import search_files, get_file_sizes, format_size
-from resources.lib.install import create_udev_rules_if_not_exists, check_and_fix_executable_permission
 
 # Get the addon's configuration
 addon = xbmcaddon.Addon()
@@ -21,6 +24,8 @@ def main():
     create_udev_rules_if_not_exists()
     # Check and fix the executable permission for the binary files
     check_and_fix_executable_permission()
+    # Create the database directory if it doesn't exist
+    create_database_dir_if_not_exists()
     # Create a dialog for search query input
     dialog = xbmcgui.Dialog()
     search_query = dialog.input("Enter search query")

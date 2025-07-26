@@ -1,7 +1,8 @@
 import os
 import shutil
 import stat
-from resources.config import script_path, plocate_path, updatedb_path
+
+from resources.config import script_path, plocate_path, updatedb_path, database_dir
 
 
 def copy_and_modify_udevil_rules(path_to_script):
@@ -66,3 +67,11 @@ def check_and_fix_executable_permission():
         if not os.access(file_path, os.X_OK):
             # If not, make the file executable
             make_binary_file_executable(file_path)
+
+
+def create_database_dir_if_not_exists():
+    """
+    Checks if the database directory exists and creates it if it does not.
+    """
+    if not os.path.exists(database_dir):
+        os.makedirs(database_dir, exist_ok=True)

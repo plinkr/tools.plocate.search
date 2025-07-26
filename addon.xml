@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="tools.plocate.search" name="plocate Search" version="0.2.0" provider-name="plinkr">
+<addon id="tools.plocate.search" name="plocate Search" version="0.2.3" provider-name="plinkr">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
     </requires>
@@ -73,7 +73,11 @@
             <icon>resources/icon.png</icon>
             <fanart>resources/fanart.png</fanart>
         </assets>
-        <news>- 0.2.0
+        <news>- 0.2.3
+- Create database directory if missing during initialization
+- 0.2.2
+- Update `plocate` to version `1.1.23`
+- 0.2.0
 - Renamed add-on to 'tools.plocate.search' as recommended by 'chewitt'
 - 0.1.0
 - First concept version, still in Beta</news>
