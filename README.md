@@ -1,6 +1,6 @@
 # Add-on for LibreELEC/Kodi `plocate Search`
 
-`plocate Search` | `tools.plocate.search` is a LibreELEC/Kodi add-on designed to provide efficient offline search functionality for your multimedia library. By leveraging [`plocate`](https://plocate.sesse.net/) and [`updatedb`](https://plocate.sesse.net/), this add-on allows you to quickly locate files within your library, even when offline. The add-on integrates seamlessly with Kodi, offering an intuitive graphical interface for searching and navigating your media files.
+`plocate Search` | `tools.plocate.search` is a LibreELEC/Kodi add-on that provides efficient offline search for your multimedia library. Using [`plocate`](https://plocate.sesse.net/) and [`updatedb`](https://plocate.sesse.net/), this add-on lets you quickly locate files within your library even when you're offline. It integrates seamlessly with Kodi, offering an intuitive graphical interface to search and browse your media files.
 
 ## Table of Contents
 
@@ -9,6 +9,7 @@
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Dependencies](#dependencies)
+- [Binaries Release](#binaries-release)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -25,15 +26,14 @@
 ## Installation
 
 1. **Download the Add-on:**
-   - For **aarch64** architecture (tested on a Raspberry Pi): Download the `tools.plocate.search_aarch64_RPi4.zip` file from the releases section of this repository.
-   - For **x86_64** architecture (PC, Intel NUC, Nettops, Virtual Machines and Laptops with x86 Hardware (64Bit)): Download the `tools.plocate.search_x86_64.zip` file from the releases section of this repository.
+   - For **aarch64** architecture (tested on a Raspberry Pi): Download the `tools.plocate.search_aarch64_RPi4.zip` file from the [releases](https://github.com/plinkr/tools.plocate.search/releases/) section of this repository.
+   - For **x86_64** architecture (PC, Intel NUC, Nettops, Virtual Machines and Laptops with x86 Hardware (64Bit)): Download the `tools.plocate.search_x86_64.zip` file from the [releases](https://github.com/plinkr/tools.plocate.search/releases/) section of this repository.
 
 2. **Install via Kodi:**
    - Open Kodi and navigate to `Add-ons`.
    - Select `Install from zip file`.
    - Locate and select the downloaded `tools.plocate.search_<architecture>.zip` file.
    - Wait for the add-on installed notification.
-
 
 3. **Post-Installation Script:**
    - The installation process will automatically run a script to copy and modify necessary `udev` rules.
@@ -69,9 +69,13 @@
 
 - **plocate:** plocate is a `locate` based on posting lists, completely replacing `mlocate` with a much faster (and smaller) index.
 - **updatedb:** Utility to update the database used by `plocate`.
-- **LibreELEC:** Built on LibreELEC 12.0.0 and depends on the `udev` rules at `/storage/.config/udev.rules.d/95-udevil-mount.rules` to index newly connected devices.
+- **LibreELEC:** Built for LibreELEC 12.0.1 and depends on the `udev` rules at `/storage/.config/udev.rules.d/95-udevil-mount.rules` to index newly connected devices.
 
-Provided in this repo on the releases section are the binaries of `plocate` and `updatedb` version `1.1.22`, compiled for `aarch64` and `x86_64`, and tested on a Raspberry Pi 4 and a virtual machine running on a Linux box. These binaries are compatible with **LibreELEC 12.0.0**.
+## Binaries Release
+
+The `plocate` and `updatedb` binaries (version `1.2.23`) are now compiled automatically by GitHub Actions for both **x86_64** and **aarch64** architectures. You can inspect the compilation workflow in [.github/workflows/build-and-release.yml](https://github.com/plinkr/tools.plocate.search/blob/main/.github/workflows/build-and-release.ymlhttps://github.com/plinkr/tools.plocate.search/blob/main/.github/workflows/build-and-release.yml) to see how the source is fetched, patched, built, and packaged into a release on every new version tag push.
+
+These binaries are compatible with **LibreELEC 12.0.1** and have been tested on a Raspberry Pi 4 (aarch64) and a virtual machine running on a Linux box (x86_64).
 
 ## Contributing
 
@@ -99,7 +103,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ### Example Usage and Performance
 
-Developed on a Raspberry Pi 4 with **LibreELEC 12.0.0** and **Kodi 21.0.0**, `plocate` scans and builds the index of a 5TB disk filled with multimedia (containing 17,502 files) in about 12 seconds on the first run:
+Developed on a Raspberry Pi 4 with **LibreELEC 12.0.1** and **Kodi 21.1.0**, `plocate` indexes a 5TB external drive containing 17,502 multimedia files in about 12 seconds on a cold start, when no database is present and the entire disk must be scanned (i.e., the worst-case scenario). 
 ```
 LibreELEC:~ # time /storage/.kodi/addons/tools.plocate.search/resources/lib/updatedb --database-root /var/media/easystore/ --output /storage/plinkr/plocate/plocate.db
 real 0m 12.10s
@@ -117,9 +121,9 @@ sys 0m 0.23s
 
 ### Development Notes
 
-**This add-on is an early Beta version.** Although it works as intended, please bear in mind it's still a concept. If you find any issues, please report them here in this repository.
+This add‑on is stable and I use it on a daily basis. If you'd like to request a new feature or report an issue, please open one in this repository's [Issues](https://github.com/plinkr/tools.plocate.search/issues).
 
-This add-on uses a modified version of `/usr/lib/udev/rules.d/95-udevil-mount.rules` copied to `/storage/.config/udev.rules.d/95-udevil-mount.rules` to run `updatedb` and create the index for the connected device after it has been mounted by `udevil`. The script runs in the background to avoid interfering with normal operations. 
+It uses a modified version of `/usr/lib/udev/rules.d/95-udevil-mount.rules` copied to `/storage/.config/udev.rules.d/95-udevil-mount.rules` to run `updatedb` and create the index for the connected device after it has been mounted by `udevil`. The script runs in the background to avoid interfering with normal operations. 
 
 The add-on for Kodi returns search results and allows you to open directories or play media files directly. Configuration options enable various `plocate` behaviors, such as case-insensitive searches, regular expressions, basename searches, and searching only currently connected devices or including disconnected ones. This last option is useful if you want to find some file on a disk that you had previously connected, but you are unsure on what drive it is.
 
@@ -130,8 +134,8 @@ LibreELEC:~ # rm /storage/.config/udev.rules.d/95-udevil-mount.rules
 
 ### TODO
 - Make `plocate` a LibreELEC add-on, so it can support all its platforms.
-- Right now `plocate` is compiled for `aarch64` and `x86_64` and tested on a Raspberry Pi 4 and a virtual machine running on a Linux box; it should be compiled for more architectures, or at least write a how-to for compiling `plocate` for LibreELEC on any architecture, so you can do it yourself.
-- Make an option to rebuild the index of any connected device from the configuration, on demand.
-- Find a way to clean the custom `udev` rules after uninstallation.
+- Document how to compile `plocate` for LibreELEC on any architecture, by following the existing GitHub Actions workflow as a template.
+- Add an option to rebuild the index of any connected device from the configuration, on demand.
+- Find a way to clean up custom `udev` rules after uninstallation.
 
 For more details, please refer to the source code within this repository.
