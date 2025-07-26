@@ -73,7 +73,7 @@
 
 ## Binaries Release
 
-The `plocate` and `updatedb` binaries (version `1.2.23`) are now compiled automatically by GitHub Actions for both **x86_64** and **aarch64** architectures. You can inspect the compilation workflow in [.github/workflows/build-and-release.yml](https://github.com/plinkr/tools.plocate.search/blob/main/.github/workflows/build-and-release.ymlhttps://github.com/plinkr/tools.plocate.search/blob/main/.github/workflows/build-and-release.yml) to see how the source is fetched, patched, built, and packaged into a release on every new version tag push.
+The `plocate` and `updatedb` binaries (version `1.1.23`) are now compiled automatically by GitHub Actions for both **x86_64** and **aarch64** architectures. You can inspect the compilation workflow in [.github/workflows/build-and-release.yml](https://github.com/plinkr/tools.plocate.search/blob/main/.github/workflows/build-and-release.yml) to see how the source is fetched, patched, built, and packaged into a release on every new version tag push.
 
 These binaries are compatible with **LibreELEC 12.0.1** and have been tested on a Raspberry Pi 4 (aarch64) and a virtual machine running on a Linux box (x86_64).
 
